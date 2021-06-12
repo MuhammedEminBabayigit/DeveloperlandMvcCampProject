@@ -1,0 +1,212 @@
+﻿@using EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<Post>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Post İşlemleri</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped projects">
+                <thead>
+                    <tr>
+                        <th style="width: 1%">
+                            #
+                        </th>
+                        <th style="width: 20%">
+                            Post Başlığı
+                        </th>
+                        <th style="width: 30%">
+                            Oluşturan Yazar
+                        </th>
+                        <th style="width: 8%" class="text-center">
+                            Kategori
+                        </th>
+                        <th style="width: 8%" class="text-center">
+                            Yorumlar
+                        </th>
+                        <th style="width: 5%">
+                            Görüntülenmesi
+                        </th>
+                        <th style="width: 5%">
+                            Post Oy
+                        </th>
+                        <th style="width: 5%">
+                            Post Durumu
+                        </th>
+
+                        <th style="width: 20%">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.PostID
+                            </td>
+                            <td>
+                                <a>
+                                    @item.PostHead
+                                </a>
+                                <br />
+                                <small>
+                                    <i class="fas fa-calendar">
+                                    </i>
+                                    @item.PostDate.ToShortDateString()
+                                </small>
+                            </td>
+
+                            <td>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <img alt="Avatar" class="table-avatar" src="@item.PostImage">
+                                    </li>
+                                    @item.Writer.WriterFullName
+                                </ul>
+                            </td>
+                            <td class="project-state">
+                                <span class="badge badge-success">@item.Category.CategoryName</span>
+                            </td>
+                            <td class="project-actions text-right">
+                                <a class="btn btn-primary btn-sm" href="/Comment/CommentByPost/@item.PostID">
+                                    <i class="fas fa-comment">
+                                    </i>
+                                    Yorumlar
+                                </a>
+                            </td>
+                            <td class="project-state">
+                                <i class="fas fa-eye">
+                                </i>
+                                @item.PostViews
+                            </td>
+
+                            <td class="project-state">
+                                @if (item.UpVote >= item.UnVote)
+                                {
+                                    <i class="fas fa-plus">
+                                    </i>
+                                    @Math.Abs(item.UpVote - item.UnVote)
+                                }
+                                @if (item.UpVote < item.UnVote)
+                                {
+                                    <i class="fas fa-minus">
+                                    </i>
+                                    @Math.Abs(item.UpVote - item.UnVote)
+                                }
+
+                            </td>
+                            <td class="project-state">
+                                @if (item.PostStatus == true)
+                                {
+                                    <span class="badge badge-warning">Aktif</span>
+                                }
+                                @if (item.PostStatus == false)
+                                {
+                                    <span class="badge badge-danger">Pasif</span>
+                                }
+                            </td>
+                            <td class="project-actions text-right">
+                                <a class="btn btn-primary btn-sm" href="#">
+                                    <i class="fas fa-folder">
+                                    </i>
+                                    Postun İçeriği
+                                </a>
+                                <a class="btn btn-info btn-sm" href="/AdminPost/EditPost/@item.PostID">
+                                    <i class="fas fa-pencil-alt">
+                                    </i>
+                                    Düzenle
+                                </a>
+                                @if (item.PostStatus == true)
+                                {
+                                    <a class="btn btn-danger btn-sm" href="/AdminPost/DeletePost/@item.PostID">
+                                        <i class="fas fa-trash">
+                                        </i>
+                                        Sil
+                                    </a>
+                                }
+                                @if (item.PostStatus == false)
+                                {
+                                    <a class="btn btn-warning btn-sm" href="/AdminPost/ActivePost/@item.PostID">
+                                        <i class="fas fa-check">
+                                        </i>
+                                        Aktif Et
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</section>
+@Html.PagedListPager((IPagedList)Model,sayfa=>Url.Action("Index",new { sayfa}))
+<a href="/AdminPost/AddPost" class="btn btn-danger">Yeni Kategori</a>
+
+@*<table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Post Başlığı</th>
+            <th>Post İçeriği</th> Buton Olarak
+            <th>Post Görüntülenmesi</th>
+            <th>Oluşturulma Tarihi</th>
+            <th>Post Oy</th>
+            <th>Post Durumu</th>
+            <th>Yazar ID</th>
+            <th>Kategori ID</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+            <th>Yorumlar</th>
+            <th>Etiketler</th>
+        </tr>
+
+        <tr>
+            <th>@item.PostID</th>
+            <td>@item.PostHead</td>
+            <td><a href="#" class="btn btn-danger">İçeriği Görüntüle</a></td>
+            <td>@item.PostViews</td>
+            <td>@item.PostDate</td>
+            <td>@Math.Abs(item.UpVote - item.UnVote)</td>
+            <td>@item.PostStatus</td>
+            <td>@item.WriterID</td>
+            <td>@item.CategoryID</td>
+            <td><a href="#" class="btn btn-primary">Yorumlar</a></td>
+            <td><a href="#" class="btn btn-primary">Etiketler</a></td>
+            <td><a href="/AdminCategory/DeleteCategory/@item.CategoryID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/AdminCategory/EditCategory/@item.CategoryID" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+
+
+
+    </table>*@

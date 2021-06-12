@@ -1,0 +1,50 @@
+﻿@model EntityLayer.Concrete.Category
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+    <div class="wrapper">
+
+        <div class="content-wrapper">
+            <!-- Main content -->
+            @using (Html.BeginForm("AddCategory", "AdminCategory", FormMethod.Post))
+            {
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Kategori Ekleme Sayfası</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        @Html.Label("Kategori Adı")
+                                        @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.CategoryName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" class="btn btn-secondary">Cancel</a>
+                            <button class="btn btn-outline-primary">Ekle</button>
+                        </div>
+                    </div>
+                </section>
+            }
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+    </div>

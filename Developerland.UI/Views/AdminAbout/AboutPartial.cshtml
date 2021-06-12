@@ -1,0 +1,45 @@
+﻿<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Modal1">
+    Yeni Hakkımızda Yazı Girişi
+</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Hakkımızda</h2>
+            </div>
+            <div class="modal-body">
+                <form class="form-group" method="post" action="/AdminAbout/AddAbout/">
+                    <div class="form-floating mb-3" style="text-align:center">
+                        <input type="text" class="form-control" id="floatingInput" name="AboutDetails1" placeholder="Hakkımda Metin Girişi 1" required>
+                        <br />
+                        <input type="text" class="form-control" id="floatingInput" name="AboutDetails2" placeholder="Hakkımda Metin Girişi 2" required>
+                        <br />
+                        <input type="file" class="form-control" id="floatingInput" name="AboutImage1" placeholder="Hakkımda Görsel 1" required />
+                        <br />
+                        <input type="file" class="form-control" id="floatingInput" name="AboutImage2" placeholder="Hakkımda Görsel 2" required />
+                        <br />
+                        @*<div class="container">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <input type="number" style="margin-top:20px;float:left;" class="form-control" id="floatingInput" name="Alacak" value="0" placeholder="Alacak">
+                                    </div>
+                                    <div class="col-sm">
+                                        <input type="number" style="margin-top:20px" class="form-control" id="floatingInput" name="Tahsilat" value="0" placeholder="Tahsilat">
+                                    </div>
+                                    <div class="col-sm">
+                                        <input type="number" style="margin-top:20px" class="form-control" id="floatingInput" name="Kalan" value="0" placeholder="Kalan">
+                                    </div>
+                                </div>
+                            </div>*@
+                        <button class="btn btn-primary" style="float:left;margin-top:20px;text-align:center;width:150px">Ekle</button>
+                        <button class="btn btn-warning" type="reset" style="float:left;margin-top:20px;text-align:center;width:150px">Temizle</button>
+                        <button class="btn btn-danger" type="button" style="float:left;margin-top:20px;text-align:center;width:150px" data-dismiss="modal">Vazgeç</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
