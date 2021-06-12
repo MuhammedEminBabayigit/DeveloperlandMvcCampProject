@@ -19,7 +19,7 @@ namespace Developerland.UI.Controllers
         MessageValidator mV = new MessageValidator();
 
         [Authorize]
-        public ActionResult Inbox()
+        public ActionResult Inbox(string parameter)
         {
             var messageValues = mM.GetListInbox();
             return View(messageValues);
@@ -97,6 +97,8 @@ namespace Developerland.UI.Controllers
         public ActionResult GetInboxDetails(int id)
         {
             var messageValues = mM.GetByID(id);
+            messageValues.IsRead = true;
+            mM.MessageUpdate(messageValues);
             return View(messageValues);
         }
         public ActionResult DeleteMessageSendbox(int id)
@@ -109,6 +111,21 @@ namespace Developerland.UI.Controllers
         {
             var messageValues = mM.GetByID(id);
             mM.MessageDelete(messageValues);
+            return RedirectToAction("Inbox");
+        }
+
+        public ActionResult Activate(int id)
+        {
+            var message = mM.GetByID(id);
+            message.IsRead = true;
+            mM.MessageUpdate(message);
+            return RedirectToAction("Inbox");
+        }
+        public ActionResult Disable(int id)
+        {
+            var message = mM.GetByID(id);
+            message.IsRead = false;
+            mM.MessageUpdate(message);
             return RedirectToAction("Inbox");
         }
     }

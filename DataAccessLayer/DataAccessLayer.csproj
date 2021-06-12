@@ -89,6 +89,14 @@
     <Compile Include="Migrations\202106121103428_mig_admin-table.designer.cs">
       <DependentUpon>202106121103428_mig_admin-table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106122118196_add_MessageColumn_IsRead.cs" />
+    <Compile Include="Migrations\202106122118196_add_MessageColumn_IsRead.designer.cs">
+      <DependentUpon>202106122118196_add_MessageColumn_IsRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106122239143_mig_Contact_ISRead.cs" />
+    <Compile Include="Migrations\202106122239143_mig_Contact_ISRead.designer.cs">
+      <DependentUpon>202106122239143_mig_Contact_ISRead.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -111,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106121103428_mig_admin-table.resx">
       <DependentUpon>202106121103428_mig_admin-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106122118196_add_MessageColumn_IsRead.resx">
+      <DependentUpon>202106122118196_add_MessageColumn_IsRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106122239143_mig_Contact_ISRead.resx">
+      <DependentUpon>202106122239143_mig_Contact_ISRead.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

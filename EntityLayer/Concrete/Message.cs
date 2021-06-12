@@ -20,5 +20,6 @@ namespace EntityLayer.Concrete
         [Column(TypeName = "datetime2")]
         public DateTime MessageDate { get; set; }
         public bool IsDraft { get; set; }
+        public bool IsRead { get; set; }
     }
 }

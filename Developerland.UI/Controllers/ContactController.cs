@@ -30,11 +30,25 @@ namespace Developerland.UI.Controllers
         }
         public PartialViewResult SideBarContact()
         {
-            ViewBag.SenderMailCount = ctx.Messages.Count(x => x.SenderMail == "admin@gmail.com" && x.IsDraft == false);
-            ViewBag.ReceiverMailCount = ctx.Messages.Count(x => x.ReceiverMail == "admin@gmail.com");
+            ViewBag.SenderMailCount = ctx.Messages.Count(x => x.SenderMail == "admin@gmail.com" && x.IsDraft == false && x.IsRead == false);
+            ViewBag.ReceiverMailCount = ctx.Messages.Count(x => x.ReceiverMail == "admin@gmail.com" && x.IsRead == false);
             ViewBag.DraftMailCount = ctx.Messages.Count(x => x.SenderMail == "admin@gmail.com" && x.IsDraft == true);
-            ViewBag.ContactCount = cM.GetList().Count;
+            ViewBag.ContactCount = cM.GetList().Count(x=>x.IsRead == false);
             return PartialView();
+        }
+        public ActionResult Activate(int id)
+        {
+            var contact = cM.GetByID(id);
+            contact.IsRead = true;
+            cM.ContactUpdate(contact);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Disable(int id)
+        {
+            var contact = cM.GetByID(id);
+            contact.IsRead = false;
+            cM.ContactUpdate(contact);
+            return RedirectToAction("Index");
         }
     }
 }

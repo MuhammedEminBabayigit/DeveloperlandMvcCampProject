@@ -20,7 +20,7 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">
-            @Html.Action("SideBarContact", "Contact")
+        @Html.Action("SideBarContact", "Contact")
         <!-- /.col -->
         <div class="col-md-9">
             <div class="card card-primary card-outline">
@@ -62,32 +62,48 @@
                         </div>
                         <!-- /.float-right -->
                     </div>
-                    <div class="table-responsive mailbox-messages">
+                    <div class="table-responsive mailbox-messages" id="myModal">
                         <table class="table table-hover table-striped">
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr>
-                                    <td>
-                                        <div class="icheck-primary">
-                                            <input type="checkbox" value="" id="check1">
-                                            <label for="check1"></label>
-                                        </div>
-                                    </td>
-                                    <td> <a href="/Message/DeleteMessageInbox/@item.MessageID" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></a></td>
-                                    <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                                    <td class="mailbox-name"><a href="/Message/GetInboxDetails/@item.MessageID">@item.SenderMail</a></td>
-                                    <td class="mailbox-subject">
-                                        <b>@item.MessageSubject</b> @item.MessageContent.Substring(0, 10)...
-                                    </td>
-                                    <td class="mailbox-attachment"></td>
-                                    <td class="mailbox-date">@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
-                                </tr>
+                                    <tr>
+
+                                        <td>
+                                            @if (item.IsRead == true)
+                                            {
+                                                <a class="btn btn-warning btn-sm" href="/Message/Disable/@item.MessageID">
+                                                    <i class="fas fa-check">
+                                                    </i>
+                                                    @*Okundu*@
+                                                </a>
+                                            }
+                                            @if (item.IsRead == false)
+                                            {
+                                                <a class="btn btn-primary btn-sm" href="/Message/Activate/@item.MessageID">
+                                                    <i class="fas fa-circle">
+                                                    </i>
+                                                    @*Okunmadı*@
+                                                </a>
+                                            }
+                                        </td>
+                                        <td> <a href="/Message/DeleteMessageInbox/@item.MessageID" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                                        <td class="mailbox-name"><a href="/Message/GetInboxDetails/@item.MessageID">@item.SenderMail</a></td>
+                                        <td class="mailbox-subject">
+                                            <b>@item.MessageSubject</b> @item.MessageContent.Substring(0, 10)...
+                                        </td>
+                                        <td class="mailbox-attachment"></td>
+                                        <td class="mailbox-date">@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
+                                    </tr>
                                 }
 
                             </tbody>
                         </table>
                         <!-- /.table -->
+                        <div class="modal-body" id="ModalBody">
+
+                        </div>
                     </div>
                     <!-- /.mail-box-messages -->
                 </div>
@@ -123,3 +139,4 @@
     </div>
     <!-- /.row -->
 </section>
+

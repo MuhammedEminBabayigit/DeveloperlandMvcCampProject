@@ -69,10 +69,22 @@
                                     {
                                         <tr>
                                             <td>
-                                                <div class="icheck-primary">
-                                                    <input type="checkbox" value="" id="check1">
-                                                    <label for="check1"></label>
-                                                </div>
+                                                @if (item.IsRead == true)
+                                                {
+                                                    <a class="btn btn-warning btn-sm" href="/Contact/Disable/@item.ContactID">
+                                                        <i class="fas fa-check">
+                                                        </i>
+                                                        @*Okundu*@
+                                                    </a>
+                                                }
+                                                @if (item.IsRead == false)
+                                                {
+                                                    <a class="btn btn-primary btn-sm" href="/Contact/Activate/@item.ContactID">
+                                                        <i class="fas fa-circle">
+                                                        </i>
+                                                        @*Okunmadı*@
+                                                    </a>
+                                                }
                                             </td>
                                             <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
                                             <td class="mailbox-name"><a href="/Contact/GetContactDetails/@item.ContactID">@item.UserName</a></td>

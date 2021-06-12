@@ -68,10 +68,18 @@
                                 {
                                 <tr>
                                     <td>
-                                        <div class="icheck-primary">
-                                            <input type="checkbox" value="" id="check1">
-                                            <label for="check1"></label>
-                                        </div>
+                                        @if (item.IsRead == true)
+                                        {
+                                            <div class="icheck-primary">
+                                                <label for="check1">(Açıldı)</label>
+                                            </div>
+                                        }
+                                        @if (item.IsRead == false)
+                                        {
+                                            <div class="icheck-primary">
+                                                <label for="check1">(Açılmadı)</label>
+                                            </div>
+                                        }
                                     </td>
                                     <td> <a href="/Message/DeleteMessageSendbox/@item.MessageID" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></a></td>
                                     <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
