@@ -1,4 +1,7 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Developerland.UI.Models;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -11,6 +14,7 @@ namespace Developerland.UI.Controllers
 {
     public class LoginController : Controller
     {
+        AdminManager adM = new AdminManager(new EfAdminDal());
         // GET: Login
         [HttpGet]
         public ActionResult Index()
@@ -20,8 +24,8 @@ namespace Developerland.UI.Controllers
         [HttpPost]
         public ActionResult Index(Admin p)
         {
-            Context c = new Context();
-            var adminUserInfo = c.Admins.FirstOrDefault(x => x.AdminNickName == p.AdminNickName && x.AdminPassword == p.AdminPassword);
+            p.AdminPassword = Hashing.Encrypt(p.AdminPassword);
+            var adminUserInfo = adM.GetByNicknameAndPassword(p);
             if (adminUserInfo != null)
             {
                 FormsAuthentication.SetAuthCookie(adminUserInfo.AdminNickName,false);
@@ -33,6 +37,12 @@ namespace Developerland.UI.Controllers
                 return RedirectToAction("Index");
             }
             
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

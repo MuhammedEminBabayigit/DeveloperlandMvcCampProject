@@ -18,7 +18,7 @@ namespace Developerland.UI.Controllers
         MessageManager mM = new MessageManager(new EfMessageDal());
         MessageValidator mV = new MessageValidator();
 
-        [Authorize]
+        [Authorize(Roles ="B")]
         public ActionResult Inbox(string parameter)
         {
             var messageValues = mM.GetListInbox();

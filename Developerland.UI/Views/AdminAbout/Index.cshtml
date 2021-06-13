@@ -1,8 +1,45 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<About>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h2>YeniMusteriPopup</h2>
+<br />
 
-@Html.Action("AboutPartial","AdminAbout")
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Hakkımızda Detay</th>
+        <th>Aktif Yap</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.AboutID</td>
+            <td>@item.AboutDetails1</td>
+            @if (item.IsActive == true)
+            {
+                <td>
+                    <button class="btn btn-warning btn-sm" id="#aktif" href="#">
+                        <i class="fas fa-check">
+                        </i>
+                        Aktif
+                    </button>
+                </td>
+            }
+            @if (item.IsActive == false)
+            {
+                <td>
+                    <a class="btn btn-danger btn-sm" href="/AdminAbout/Activate/@item.AboutID">
+                     
+                        Aktif Et
+                    </a>
+                </td>
+            }
+        </tr>
+    }
+
+    
+</table>
+
+@Html.Action("AboutPartial", "AdminAbout")

@@ -33,6 +33,11 @@ namespace BusinessLayer.Concrete
             _aboutDal.Insert(about);
         }
 
+        public About GetActiveAbout()
+        {
+            return _aboutDal.Get(x => x.IsActive == true);
+        }
+
         public About GetByID(int id)
         {
             return _aboutDal.Get(x => x.AboutID == id);

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAboutDal.cs" />
+    <Compile Include="Abstract\IAdminDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\ICommentDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
     <Compile Include="EntityFramework\EfAboutDal.cs" />
+    <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EfCategoryDal.cs" />
     <Compile Include="EntityFramework\EfCommentDal.cs" />
     <Compile Include="EntityFramework\EfContactDal.cs" />
@@ -97,6 +99,10 @@
     <Compile Include="Migrations\202106122239143_mig_Contact_ISRead.designer.cs">
       <DependentUpon>202106122239143_mig_Contact_ISRead.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106131349306_mig_about.cs" />
+    <Compile Include="Migrations\202106131349306_mig_about.designer.cs">
+      <DependentUpon>202106131349306_mig_about.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106122239143_mig_Contact_ISRead.resx">
       <DependentUpon>202106122239143_mig_Contact_ISRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106131349306_mig_about.resx">
+      <DependentUpon>202106131349306_mig_about.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

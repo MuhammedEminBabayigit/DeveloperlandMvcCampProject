@@ -17,7 +17,7 @@ namespace Developerland.UI.Controllers
         // GET: AdminCategory
         CategoryManager cM = new CategoryManager(new EfCategoryDal());
 
-        [Authorize(Roles ="B")]
+        [Authorize]
         public ActionResult Index()
         {
             var categoryValues = cM.GetList();

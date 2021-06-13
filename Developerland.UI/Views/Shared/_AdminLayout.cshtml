@@ -107,7 +107,18 @@ to get the desired effect
 
                             </li>
                         }
+                        @if (User.IsInRole("B"))
+                        {
+                            <li class="nav-item has-treeview">
+                                <a href="/Admin/Index" class="nav-link">
+                                    <i class="nav-icon fas fa-user"></i>
+                                    <p>
+                                        Adminler
+                                    </p>
+                                </a>
 
+                            </li>
+                        }
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -201,7 +212,7 @@ to get the desired effect
 
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="/Admin/LogOut" class="nav-link">
                                 <i class="nav-icon fas fa-apple-alt"></i>
                                 <p>
                                     Çıkış Yap

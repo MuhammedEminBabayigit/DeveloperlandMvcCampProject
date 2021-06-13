@@ -15,7 +15,8 @@ namespace Developerland.UI.Controllers
         AboutManager aM = new AboutManager(new EfAboutDal());
         public ActionResult Index()
         {
-            return View();
+            var aboutValues = aM.GetList();
+            return View(aboutValues);
         }
         [HttpGet]
         public ActionResult AddAbout()
@@ -33,5 +34,16 @@ namespace Developerland.UI.Controllers
         {
             return PartialView();
         }
+        public ActionResult Activate(int id)
+        {
+            var activeAbout = aM.GetActiveAbout();
+            activeAbout.IsActive = false;
+            aM.AboutUpdate(activeAbout);
+            var about = aM.GetByID(id);
+            about.IsActive = true;
+            aM.AboutUpdate(about);
+            return RedirectToAction("Index");
+        }
+        
     }
 }

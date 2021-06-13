@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,8 +40,8 @@ namespace Developerland.UI.Roles
 
         public override string[] GetRolesForUser(string username)
         {
-            Context c = new Context();
-            var x = c.Admins.FirstOrDefault(y => y.AdminNickName == username);
+            AdminManager adm = new AdminManager(new EfAdminDal());
+            var x = adm.GetList().FirstOrDefault(y => y.AdminNickName == username);
             return new string[] { x.AdminRole };
         }
 
