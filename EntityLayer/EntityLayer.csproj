@@ -58,6 +58,7 @@
     <Compile Include="Concrete\Contact.cs" />
     <Compile Include="Concrete\Message.cs" />
     <Compile Include="Concrete\Post.cs" />
+    <Compile Include="Concrete\Skill.cs" />
     <Compile Include="Concrete\Tag.cs" />
     <Compile Include="Concrete\Writer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
