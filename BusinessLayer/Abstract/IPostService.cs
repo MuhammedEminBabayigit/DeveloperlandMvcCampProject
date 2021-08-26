@@ -10,6 +10,7 @@ namespace BusinessLayer.Abstract
     public interface IPostService
     {
         List<Post> GetList();
+        List<Post> GetListByWriter(int id);
         void AddPost(Post p);
         void DeletePost(Post p);
         Post GetByID(int id);

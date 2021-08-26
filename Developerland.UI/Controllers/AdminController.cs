@@ -13,6 +13,7 @@ using System.Web.Security;
 
 namespace Developerland.UI.Controllers
 {
+    
     public class AdminController : Controller
     {
         // GET: Admin
@@ -59,11 +60,13 @@ namespace Developerland.UI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(Admin p)
         {
             p.AdminPassword = Hashing.Encrypt(p.AdminPassword);
@@ -84,6 +87,7 @@ namespace Developerland.UI.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
+            Session.Abandon();
             return RedirectToAction("Login", "Admin");
         }
     }

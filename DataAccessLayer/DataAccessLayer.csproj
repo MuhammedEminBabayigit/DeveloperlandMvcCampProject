@@ -61,6 +61,7 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\ISkillDal.cs" />
     <Compile Include="Abstract\ITagDal.cs" />
+    <Compile Include="Abstract\IUserCommentDal.cs" />
     <Compile Include="Abstract\IWriterDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="EntityFramework\EfMessageDal.cs" />
     <Compile Include="EntityFramework\EfPostDal.cs" />
     <Compile Include="EntityFramework\EfSkillDal.cs" />
+    <Compile Include="EntityFramework\EfUserCommentDal.cs" />
     <Compile Include="EntityFramework\EfWriterDal.cs" />
     <Compile Include="Migrations\202106021415579_mig_commentdate.cs" />
     <Compile Include="Migrations\202106021415579_mig_commentdate.designer.cs">
@@ -109,6 +111,10 @@
     <Compile Include="Migrations\202106141153021_mig_AddTable_Skills.designer.cs">
       <DependentUpon>202106141153021_mig_AddTable_Skills.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106201820169_mig_AddTable_UserComment.cs" />
+    <Compile Include="Migrations\202106201820169_mig_AddTable_UserComment.designer.cs">
+      <DependentUpon>202106201820169_mig_AddTable_UserComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106141153021_mig_AddTable_Skills.resx">
       <DependentUpon>202106141153021_mig_AddTable_Skills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106201820169_mig_AddTable_UserComment.resx">
+      <DependentUpon>202106201820169_mig_AddTable_UserComment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

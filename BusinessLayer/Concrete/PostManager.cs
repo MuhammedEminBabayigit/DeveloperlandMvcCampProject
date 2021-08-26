@@ -43,6 +43,11 @@ namespace BusinessLayer.Concrete
             return _postDal.List();
         }
 
+        public List<Post> GetListByWriter(int id)
+        {
+            return _postDal.List(x => x.WriterID ==id);
+        }
+
         public void UpdatePost(Post p)
         {
             _postDal.Update(p);

@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules.FluentValidation;
 using DataAccessLayer.EntityFramework;
+using Developerland.UI.Models;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using System;
@@ -34,6 +35,8 @@ namespace Developerland.UI.Controllers
             ValidationResult results = wV.Validate(writer);
             if (results.IsValid)
             {
+                writer.WriterEmail = Hashing.Encrypt(writer.WriterEmail);
+                writer.WriterPassword = Hashing.Encrypt(writer.WriterPassword);
                 writer.Created = DateTime.Now;
                 wM.WriterAdd(writer);
                 return RedirectToAction("Index");

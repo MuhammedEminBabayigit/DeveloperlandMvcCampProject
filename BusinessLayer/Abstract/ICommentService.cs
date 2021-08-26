@@ -11,6 +11,7 @@ namespace BusinessLayer.Abstract
     {
         List<Comment> GetList();
         List<Comment> GetListByHeadingID(int id);
+        List<Comment> GetListByWriterID(string username);
         void AddComment(Comment p);
         void DeleteComment(Comment p);
         Comment GetByID(int id);

@@ -60,6 +60,7 @@
     <Compile Include="Concrete\Post.cs" />
     <Compile Include="Concrete\Skill.cs" />
     <Compile Include="Concrete\Tag.cs" />
+    <Compile Include="Concrete\UserComment.cs" />
     <Compile Include="Concrete\Writer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -39,7 +39,12 @@ namespace BusinessLayer.Concrete
         }
         public List<Comment> GetListByHeadingID(int id)
         {
-            return _commentDal.List(x => x.PostID == id);
+            return _commentDal.List(x => x.PostID == id && x.CommentStatus == true);
+        }
+
+        public List<Comment> GetListByWriterID(string username)
+        {
+            return _commentDal.List(x => x.UserName == username);
         }
 
         public void UpdateComment(Comment p)

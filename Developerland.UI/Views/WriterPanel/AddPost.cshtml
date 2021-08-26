@@ -1,0 +1,99 @@
+﻿@model EntityLayer.Concrete.Post
+@{
+    ViewBag.Title = "AddPost";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+<link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.css">
+<script src="~/AdminLTE-3.0.4/plugins/summernote/summernote.min.js"></script>
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<br />
+<div class="wrapper">
+    <div class="content-wrapper">
+        <!-- Main content -->
+        @using (Html.BeginForm("AddPost", "WriterPanel", FormMethod.Post))
+        {
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Post Ekleme Sayfası</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    @Html.Label("Post Başlığı")
+                                    @Html.TextBoxFor(x => x.PostHead, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.PostHead, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Post İçeriği")
+                                    @Html.TextAreaFor(x => x.PostContent, new { id = "compose-textarea", @class = "form-control", @style = "height: 300px" })
+                                    @Html.ValidationMessageFor(x => x.PostContent, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Post Resim")
+                                    @Html.TextBoxFor(x => x.PostImage, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.PostImage, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Kategori Seçiniz")
+                                    @Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.valueCategory, new { @class = "form-control" })
+                                    @*@Html.ValidationMessageFor(x => x.CategoryName, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="#" class="btn btn-secondary">Cancel</a>
+                        <button class="btn btn-outline-primary">Ekle</button>
+                    </div>
+                </div>
+            </section>
+        }
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+
+<script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+<!-- Summernote -->
+<script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- Page Script -->
+<script>
+$(function () {
+    //Add text editor
+    $('#compose-textarea').summernote()
+  })</script>
+<script>
+        $('#compose-textarea').summernote({
+            placeholder: 'Mesajın içeriği',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+</script>

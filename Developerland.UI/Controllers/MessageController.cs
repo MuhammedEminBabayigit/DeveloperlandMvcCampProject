@@ -17,16 +17,20 @@ namespace Developerland.UI.Controllers
         // GET: Message
         MessageManager mM = new MessageManager(new EfMessageDal());
         MessageValidator mV = new MessageValidator();
-
+        AdminManager adm = new AdminManager(new EfAdminDal());
         [Authorize(Roles ="B")]
         public ActionResult Inbox(string parameter)
         {
-            var messageValues = mM.GetListInbox();
+            parameter = (string)Session["AdminNickName"];
+            var adminMailInfo = adm.GetByNickname(parameter).AdminEmail;
+            var messageValues = mM.GetListInbox(adminMailInfo);
             return View(messageValues);
         }
-        public ActionResult Sendbox()
+        public ActionResult Sendbox(string p)
         {
-            var messageValues = mM.GetListSendbox();
+            p = (string)Session["AdminNickName"];
+            var adminMailInfo = adm.GetByNickname(p).AdminEmail;
+            var messageValues = mM.GetListSendbox(adminMailInfo);
             return View(messageValues);
         }
 

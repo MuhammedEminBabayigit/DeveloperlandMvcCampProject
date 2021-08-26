@@ -31,7 +31,7 @@ namespace Developerland.UI.Controllers
         public PartialViewResult SideBarContact()
         {
             ViewBag.SenderMailCount = ctx.Messages.Count(x => x.SenderMail == "admin@gmail.com" && x.IsDraft == false && x.IsRead == false);
-            ViewBag.ReceiverMailCount = ctx.Messages.Count(x => x.ReceiverMail == "admin@gmail.com" && x.IsRead == false);
+            ViewBag.ReceiverMailCount = ctx.Messages.Count(x => x.ReceiverMail == "33ncPI39RDIN95CbCE2bZg==" && x.IsRead == false);
             ViewBag.DraftMailCount = ctx.Messages.Count(x => x.SenderMail == "admin@gmail.com" && x.IsDraft == true);
             ViewBag.ContactCount = cM.GetList().Count(x=>x.IsRead == false);
             return PartialView();

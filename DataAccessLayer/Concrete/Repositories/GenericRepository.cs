@@ -45,7 +45,7 @@ namespace DataAccessLayer.Concrete.Repositories
         {
             return _object.Where(filter).ToList();
         }
-
+        //Update edince status false oluyor
         public void Update(T p)
         {
             var updatedEntity = c.Entry(p);

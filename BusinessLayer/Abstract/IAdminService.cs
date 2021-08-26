@@ -18,5 +18,6 @@ namespace BusinessLayer.Abstract
 
         Admin GetByID(int id);
         Admin GetByNicknameAndPassword(Admin Admin);
+        Admin GetByNickname(string p);
     }
 }
