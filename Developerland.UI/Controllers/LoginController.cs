@@ -57,17 +57,17 @@ namespace Developerland.UI.Controllers
         [AllowAnonymous]
         public ActionResult WriterLogin(Writer p)
         {
-            var response = Request["g-recaptcha-response"];
-            const string secret = "6Lfn_JMbAAAAAH-go1b0RkpgOlmpLYdyhBTSEEKo";
-            var client = new WebClient();
+            //var response = Request["g-recaptcha-response"];
+            //const string secret = "6Lfj3DAcAAAAAOAf7OPhg5E_4RBqyF9EpWoxeqmI";
+            //var client = new WebClient();
 
-            var reply = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
-            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
-            if (!captchaResponse.Success)
-            {
-                ViewBag.ErrorMessage = "Doğrulama Başarısız";
-                return View();
-            }
+            //var reply = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+            //var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+            //if (!captchaResponse.Success)
+            //{
+            //    ViewBag.ErrorMessage = "Doğrulama Başarısız";
+            //    return View();
+            //}
 
             p.WriterPassword = Hashing.Encrypt(p.WriterPassword);
             var writerInfo = wM.GetByUsernameAndPassword(p);
@@ -90,13 +90,13 @@ namespace Developerland.UI.Controllers
             Session.Abandon();
             return RedirectToAction("Login", "WriterLogin");
         }
-        public class CaptchaResponse
-        {
-            [JsonProperty("success")]
-            public bool Success { get; set; }
+        //public class CaptchaResponse
+        //{
+        //    [JsonProperty("success")]
+        //    public bool Success { get; set; }
 
-            [JsonProperty("error-codes")]
-            public List<string> ErrorCodes { get; set; }
-        }
+        //    [JsonProperty("error-codes")]
+        //    public List<string> ErrorCodes { get; set; }
+        //}
     }
 }

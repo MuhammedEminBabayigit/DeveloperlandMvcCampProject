@@ -2813,6 +2813,9 @@
     <Content Include="AdminLTE-3.0.4\web4\webfonts\fa-solid-900.ttf" />
     <Content Include="AdminLTE-3.0.4\web4\webfonts\fa-solid-900.woff" />
     <Content Include="AdminLTE-3.0.4\web4\webfonts\fa-solid-900.woff2" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
