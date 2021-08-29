@@ -11,6 +11,7 @@ namespace BusinessLayer.Abstract
     {
         List<Post> GetList();
         List<Post> GetListByWriter(int id);
+        List<Post> GetListByWriterAndFilter(int id, string parameter);
         void AddPost(Post p);
         void DeletePost(Post p);
         Post GetByID(int id);

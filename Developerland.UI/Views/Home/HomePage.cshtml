@@ -39,7 +39,22 @@
     <!-- /Fonts -->
     <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,400,400i,500,500i,700,700i,900" rel="stylesheet">
     <!-- //Fonts -->
+    <style type="text/css">
+        .harita {
+            position: relative;
+            padding-bottom: 75%;
+            height: 0;
+            overflow: hidden;
+        }
 
+            .harita iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100% !important;
+                height: 100% !important;
+            }
+    </style>
 </head>
 
 <body>
@@ -662,6 +677,9 @@
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="harita">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1529.8650908444185!2d32.835849558721925!3d39.925053999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f190a9cea8f%3A0xd3862ea8248d08a0!2sAn%C4%B1tkabir!5e0!3m2!1str!2str!4v1630155439525!5m2!1str!2str" width="600" height="450"  style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </footer>
     <!--//footer-->

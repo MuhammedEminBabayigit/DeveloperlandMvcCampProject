@@ -23,6 +23,17 @@ namespace Developerland.UI.Controllers
             return View(postValues);
         }
 
+       
+        public ActionResult PostReport()
+        {
+            var postValues = pM.GetList();
+            return View(postValues);
+        }
+        public ActionResult PostReporting()
+        {
+            var postValues = pM.GetList();
+            return View(postValues);
+        }
         [HttpGet]
         public ActionResult AddPost()
         {

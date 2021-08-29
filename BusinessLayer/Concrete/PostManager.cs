@@ -48,6 +48,11 @@ namespace BusinessLayer.Concrete
             return _postDal.List(x => x.WriterID ==id);
         }
 
+        public List<Post> GetListByWriterAndFilter(int id, string parameter)
+        {
+            return _postDal.List(x => x.WriterID == id && x.PostHead.Contains(parameter));
+        }
+
         public void UpdatePost(Post p)
         {
             _postDal.Update(p);

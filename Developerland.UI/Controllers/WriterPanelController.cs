@@ -49,12 +49,18 @@ namespace Developerland.UI.Controllers
             }
             return View();
         }
-        public ActionResult MyPost(string p, int? page = 1)
+        public ActionResult MyPost(string parameter/*, int? page = 1*/)
         {
             int id;
-            p = (string)Session["WriterNickName"];
+            string p = (string)Session["WriterNickName"];
             id = wM.GetByNickName(p).WriterID;
-            var values = pM.GetListByWriter(id).ToPagedList(page ?? 1, 4);
+            var values = pM.GetListByWriter(id);
+            //var values = pM.GetListByWriter(id).ToPagedList(page ?? 1, 4);
+            if (!string.IsNullOrEmpty(parameter))
+            {
+               values = pM.GetListByWriterAndFilter(id, parameter);
+               //values = pM.GetListByWriterAndFilter(id, parameter).ToPagedList(page ?? 1, 4);
+            }
             return View(values);
         }
         [HttpGet]

@@ -59,6 +59,7 @@
     <Compile Include="Abstract\ICategoryService.cs" />
     <Compile Include="Abstract\ICommentService.cs" />
     <Compile Include="Abstract\IContactService.cs" />
+    <Compile Include="Abstract\IImageFileService.cs" />
     <Compile Include="Abstract\IMessageService.cs" />
     <Compile Include="Abstract\IPostService.cs" />
     <Compile Include="Abstract\ISkillService.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Concrete\CategoryManager.cs" />
     <Compile Include="Concrete\CommentManager.cs" />
     <Compile Include="Concrete\ContactManager.cs" />
+    <Compile Include="Concrete\ImageFileManager.cs" />
     <Compile Include="Concrete\MessageManager.cs" />
     <Compile Include="Concrete\PostManager.cs" />
     <Compile Include="Concrete\SkillManager.cs" />

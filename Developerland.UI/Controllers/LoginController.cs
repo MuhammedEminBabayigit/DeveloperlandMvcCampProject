@@ -3,9 +3,11 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Developerland.UI.Models;
 using EntityLayer.Concrete;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -55,6 +57,18 @@ namespace Developerland.UI.Controllers
         [AllowAnonymous]
         public ActionResult WriterLogin(Writer p)
         {
+            var response = Request["g-recaptcha-response"];
+            const string secret = "6Lfn_JMbAAAAAH-go1b0RkpgOlmpLYdyhBTSEEKo";
+            var client = new WebClient();
+
+            var reply = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+            if (!captchaResponse.Success)
+            {
+                ViewBag.ErrorMessage = "Doğrulama Başarısız";
+                return View();
+            }
+
             p.WriterPassword = Hashing.Encrypt(p.WriterPassword);
             var writerInfo = wM.GetByUsernameAndPassword(p);
             if (writerInfo != null)
@@ -75,6 +89,14 @@ namespace Developerland.UI.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon();
             return RedirectToAction("Login", "WriterLogin");
+        }
+        public class CaptchaResponse
+        {
+            [JsonProperty("success")]
+            public bool Success { get; set; }
+
+            [JsonProperty("error-codes")]
+            public List<string> ErrorCodes { get; set; }
         }
     }
 }
